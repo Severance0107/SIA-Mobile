@@ -4,7 +4,10 @@ import ImageHeader from '../../public/img/logoufps.png'
 import { styles } from '../styles/auth.styles'
 import { Ionicons  } from '@expo/vector-icons'; 
 import useAuth from '../hooks/useAuth';
-import { Redirect, router } from 'expo-router';
+import { router } from 'expo-router';
+import clienteAxios from '../config/clienteAxios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { dataForm } from '../util/prueba';
 
 export default function Auth() {
 
@@ -13,17 +16,33 @@ export default function Auth() {
     const [password, setPassword] = useState('')
     const [hidePassword, setHidePassword] = useState(true)
 
-    const {session, setSession} = useAuth()
+    const {session, setSession, setAuth} = useAuth()
 
     const handleChangeHidePassword = () => {
         setHidePassword(!hidePassword);
     }
         
-    const handleSubmit = async persona => {
-        console.log(persona)
-        setSession(true)
+    const handleSubmit = async e => {
+        // console.log(persona)
+        // setSession(true)
 
-        console.log(session)
+        if([codigo, documento, password].includes('')){
+            console.log('Todos los campo son obligatorios')
+            return
+        }
+
+        try {
+            const {data} = await clienteAxios.post('/login', {cod:codigo, doc:documento, pas:password, not:'3f8dba94-c830-4131-968b-09d1b6cade06'})
+            setSession(true)
+            const jsonValue = JSON.stringify(data);
+            await AsyncStorage.setItem('token', jsonValue)
+            setAuth(data)
+            console.log(data)
+            router.replace('/screens/home')
+        } catch (error) {
+            console.log(error)
+        }
+
 
         if(session){
            return router.replace('/screens/home')
@@ -102,7 +121,7 @@ export default function Auth() {
                     <View style={styles.button}>
                         <Button 
                             title="Ingresar"
-                            onPress={() => {handleSubmit({codigo, documento, password})}}
+                            onPress={() => {handleSubmit()}}
                             color={'#EC1C21'}
                             />
                     </View>

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import Header from '../../components/header'
-import Footer from '../../components/footer'
 import { Link, Stack } from 'expo-router'
 
 export default function Home() {

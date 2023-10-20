@@ -49,5 +49,32 @@ export const styles = StyleSheet.create({
     textVersion:{
         color:'#fff',
         fontSize:8
+    },
+
+    // TabButtons
+    containerTabButton: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tabButton:{
+        width:40,
+        height: 40,
+        borderRadius: 25,
+        borderWidth: 4,
+        borderColor: '#FFF',
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tabBorderButton:{
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: '#EC1C21',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tabLabel:{
+        fontSize: 9, color: '#EC1C21', textAlign: 'center'
     }
 })
