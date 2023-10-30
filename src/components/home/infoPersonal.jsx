@@ -24,7 +24,7 @@ export default function InfoPersonal() {
   return (
     <View style={styles.infoPersonalContainer}>
         <View style={styles.infoPersonalImageContainer}>
-            <Image style={styles.infoPersonalImage} source={{'uri': informacion.IMAGEN}}/>
+            <Image style={styles.infoPersonalImage} source={ informacion.IMAGEN === 1 ? perfil: {'uri': informacion.IMAGEN}}/>
         </View>
       <View
         style={styles.inforPersonalLineRed}

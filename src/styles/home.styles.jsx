@@ -20,24 +20,33 @@ export const styles = StyleSheet.create({
     infoPersonalImageContainer:{
         position: 'absolute', 
         left: 10, 
-        top:12.5, 
+        top:10, 
         zIndex: 1,
         alignItems: 'center', 
         backgroundColor:'#FFF',
-        borderRadius: 50
+        borderRadius: 50,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
     },
     infoPersonalImage:{
-        width:65, 
-        height:65, 
+        width:80, 
+        height:80, 
         resizeMode: 'stretch', 
         borderRadius: 50
     },
     inforPersonalLineRed:{
-        height:45,
+        height:50,
         backgroundColor: 'red',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
-        paddingHorizontal: 70,
+        paddingLeft: 80,
         alignItems: 'center',
         justifyContent:'center'
     },
@@ -48,11 +57,11 @@ export const styles = StyleSheet.create({
         fontWeight: '700'
     },
     inforPersonalLineWhite:{
-        height:45,
+        height:50,
         backgroundColor: '#FFF',
         borderBottomStartRadius: 10,
         borderBottomEndRadius: 10,
-        paddingHorizontal: 70,
+        paddingLeft: 80,
         alignItems: 'center',
         justifyContent:'center'
     },
