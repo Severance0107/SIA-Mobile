@@ -1,10 +1,15 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Link, Stack } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Button, View } from 'react-native'
+import { Stack, router } from 'expo-router'
+import useAuth from '../../hooks/useAuth'
+import HomeSites from '../../components/home/homeSites'
+import InfoPersonal from '../../components/home/infoPersonal'
+import {styles} from '../../styles/home.styles'
+import Footer from '../../components/footer'
 
 export default function Home() {
 
-  
   return (
     <View>
       <Stack.Screen
@@ -12,11 +17,12 @@ export default function Home() {
           title: 'Inicio',
         }}
       />
-      <Text>Desde el home</Text>
-      <Link href={'screens/notasActuales'}>Ir a academica</Link>
-      <Link href={'screens/restaurante'}>Ir a Bienestar</Link>
-      <Link href={'screens/estudiante'}>Ir a horario</Link>
-      <Link href={'screens/liquidacion'}>Ir a Matricula</Link>
+      <InfoPersonal />
+
+      <View style={styles.homeContainerHomeSites}>
+        <HomeSites/>
+      </View>
+      
     </View>
   )
 }

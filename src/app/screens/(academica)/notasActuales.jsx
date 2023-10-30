@@ -8,6 +8,7 @@ export default function NotasActuales() {
       <Stack.Screen
         options={{
           title: 'Notas Actuales',
+
         }}
       />
       <Text>

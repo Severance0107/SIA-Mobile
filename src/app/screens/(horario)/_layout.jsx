@@ -7,8 +7,8 @@ import * as Animatable from 'react-native-animatable';
 import { TouchableOpacity, View } from 'react-native';
 
 const tabsLayout = [
-  {name: 'estudiante', title:'Horario Actual', label:'Actual', href:'/screens/estudiante', icon:'person'},
-  {name: 'carrera', title:'Horario Carrera', label:'Carrera', href:'/screens/carrera', icon:'newspaper'},
+  {name: 'estudiante', title:'Horario Actual', label:'Actual', href:'/screens/estudiante', icon:'person-outline'},
+  {name: 'carrera', title:'Horario Carrera', label:'Carrera', href:'/screens/carrera', icon:'newspaper-outline'},
 ];
 
 export default function HorarioLayout({}) {
@@ -40,14 +40,27 @@ export const TabButton = (props) => {
   const LabelRef = useRef(null)
 
   useEffect(() => {
-    if(focused){
-      viewRef.current.animate({0: {scale:.5, translateY: 8}, 0.93:{translateY:-18}, 1:{scale:1.5, translateY: -10}})
-      circleRef.current.animate({0:{scale: 0}, 0.1:{scale: .9}, 0.5:{scale: .1}, 0.8:{scale: .7}, 1:{scale:1}})
-      LabelRef.current.transitionTo({scale:1})
-    }else{
-      viewRef.current.animate({0: {scale:1.5, translateY: -10}, 1:{scale:1, translateY: 6}})
-      circleRef.current.animate({0:{scale: 1}, 1:{scale:0}})
-      LabelRef.current.transitionTo({scale:0})
+    if (focused) {
+      viewRef.current.animate({
+        0: { scale: 0.5, translateY: 8 },
+        0.93: { translateY: -18 },
+        1: { scale: 1.5, translateY: -10 },
+      });
+      circleRef.current.animate({
+        0: { scale: 0 },
+        0.1: { scale: 0.9 },
+        0.5: { scale: 0.1 },
+        0.8: { scale: 0.7 },
+        1: { scale: 1 },
+      });
+      LabelRef.current.transitionTo({ scale: 1 });
+    } else {
+      viewRef.current.animate({
+        0: { scale: 1.5, translateY: -10 },
+        1: { scale: 1.2, translateY: 6 },
+      });
+      circleRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
+      LabelRef.current.transitionTo({ scale: 0 });
     }
   }, [focused])
 

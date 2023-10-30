@@ -1,9 +1,8 @@
-import { Tabs } from 'expo-router'
-import React from 'react'
+import { Link, Tabs, router, useNavigation,  } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native-web';
+import { TouchableHighlight } from 'react-native';
 
-export default function TabsCustom({children, tabItems}) {
+export default function TabsCustom({children}) {
   return (
     <Tabs 
     screenOptions={{
@@ -12,12 +11,12 @@ export default function TabsCustom({children, tabItems}) {
         },
         headerTintColor: '#FFF',
         headerTitleStyle:{
-          fontWeight: '700',
+          fontWeight: '500',
           fontSize: 25
         },
         headerTitleAlign: 'center',
-        headerLeft: () => (<Back/>),
-        headerRight: () => () => (<Stack />),
+        headerLeft: () => (<Salir />),
+        headerRight: () => (<Menu />),
         tabBarActiveTintColor: '#EC1C21', 
         tabBarInactiveTintColor: '#383838',
         tabBarStyle: {
@@ -30,24 +29,31 @@ export default function TabsCustom({children, tabItems}) {
         }
         }}>
             {
-                children
+              children
             }
         </Tabs>
   )
 }
 
-const Back = () => {
+const Menu = () => {
+  const navigation = useNavigation();
   return (
-    <View>
-      <Ionicons name="chevron-back" size={24} color="#FFF" />
-    </View>
+    <TouchableHighlight
+    style={{marginRight: 8, borderRadius: 50}}
+    onPress={() => {navigation.openDrawer()}}
+    >
+      <Ionicons name="menu" size={25} color="#FFF" />
+    </TouchableHighlight>
   )
 }
 
-const Stack = () => {
+const Salir = () => {
   return (
-    <View>
-      <Ionicons name="list" size={24} color="#FFF" />
-    </View>
+    <Link
+      href={'/screens/home'}
+      style={{marginLeft: 8, borderRadius: 50}}
+    >
+      <Ionicons name="chevron-back-outline" size={25} color="#FFF" />
+    </Link>
   )
 }

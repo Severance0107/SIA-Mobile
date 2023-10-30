@@ -29,7 +29,8 @@ export const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems: 'center',
         backgroundColor:'#383838',
-        padding:5
+        padding:5,
+        zIndex: -1
     },
     imageFooter: {
         width: 175,
@@ -49,6 +50,23 @@ export const styles = StyleSheet.create({
     textVersion:{
         color:'#fff',
         fontSize:8
+    },
+
+    // Loader
+    loaderContainer: {
+        paddingTop: Constants.statusBarHeight,
+        flexGrow: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    loaderImage:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 314,
+        height: 236,
+        resizeMode: 'stretch'
     },
 
     // TabButtons
@@ -76,5 +94,11 @@ export const styles = StyleSheet.create({
     },
     tabLabel:{
         fontSize: 9, color: '#EC1C21', textAlign: 'center'
+    },
+
+
+    drawerStyles:{
+        marginTop: Constants.statusBarHeight,
+        backgroundColor: 'transparent'
     }
 })

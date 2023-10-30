@@ -12,21 +12,21 @@ const tabsLayout = [
     title: "Notas Actuales",
     label: "Actuales",
     href: "/screens/notasActuales",
-    icon: "golf",
+    icon: "golf-outline",
   },
   {
     name: "notasAcumuladas",
     title: "Notas Acumuladas",
     label: "Acumuladas",
     href: "/screens/notasAcumuladas",
-    icon: "receipt",
+    icon: "receipt-outline",
   },
   {
     name: "promedio",
     title: "Promedio",
     label: "Promedio",
     href: "/screens/promedio",
-    icon: "stats-chart",
+    icon: "stats-chart-outline",
   },
 ];
 

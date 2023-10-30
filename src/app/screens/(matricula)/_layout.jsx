@@ -7,8 +7,8 @@ import { styles } from "../../../styles/general.styles";
 import * as Animatable from "react-native-animatable";
 
 const tabsLayout = [
-  {name: 'liquidacion', title:'Liquidación', label:'Liquidación', href:'/screens/liquidacion', icon:'cash'},
-  {name: 'matriculaActual', title:'Matricula Actual', label:'Liquidación', href:'/screens/matriculaActual', icon:'albums'},
+  {name: 'liquidacion', title:'Liquidación', label:'Liquidación', href:'/screens/liquidacion', icon:'cash-outline'},
+  {name: 'matriculaActual', title:'Matricula Actual', label:'Matricula', href:'/screens/matriculaActual', icon:'albums-outline'},
 ];
 
 export default function MatriculaLayout({}) {

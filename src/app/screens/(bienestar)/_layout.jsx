@@ -12,14 +12,14 @@ const tabsLayout = [
     title: "Restaurante",
     label: "Restaurante",
     href: "/screens/restaurante",
-    icon: "fast-food",
+    icon: "fast-food-outline",
   },
   {
     name: "reservaEscenario",
     title: "Escenarios Deportivos",
     label: "Escenarios",
     href: "/screens/reservaEscenario",
-    icon: "football",
+    icon: "football-outline",
   },
 ];
 
@@ -68,7 +68,7 @@ export const TabButton = (props) => {
     } else {
       viewRef.current.animate({
         0: { scale: 1.5, translateY: -10 },
-        1: { scale: 1, translateY: 6 },
+        1: { scale: 1.2, translateY: 6 },
       });
       circleRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
       LabelRef.current.transitionTo({ scale: 0 });

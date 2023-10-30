@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import { Image, Text, View, TextInput, Button, Touchable, TouchableNativeFeedback } from 'react-native'
-import ImageHeader from '../../public/img/logoufps.png'
-import { styles } from '../styles/auth.styles'
-import { Ionicons  } from '@expo/vector-icons'; 
-import useAuth from '../hooks/useAuth';
-import { router } from 'expo-router';
+import { useEffect, useState } from 'react'
 import clienteAxios from '../config/clienteAxios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { dataForm } from '../util/prueba';
+import { router } from 'expo-router';
+import { Image, Text, View, TextInput, TouchableNativeFeedback, TouchableHighlight, ActivityIndicator, Alert } from 'react-native'
+import ImageHeader from '../../assets/img/logoufps.png'
+import { styles } from '../styles/auth.styles'
+import useAuth from '../hooks/useAuth';
+import { Ionicons  } from '@expo/vector-icons'; 
+import Loader from '../components/loader';
 
 export default function Auth() {
 
@@ -15,38 +15,59 @@ export default function Auth() {
     const [documento, setDocumento] = useState('')
     const [password, setPassword] = useState('')
     const [hidePassword, setHidePassword] = useState(true)
+    const [loader, setLoader] = useState(false)
 
-    const {session, setSession, setAuth} = useAuth()
+    const {cargando, session, setSession, setAuth, logout} = useAuth()
 
     const handleChangeHidePassword = () => {
         setHidePassword(!hidePassword);
     }
+
+    const alerta = () =>
+    Alert.alert('Error de Autenticación', 'Revisa tus credenciales y vuelve a intentarlo', [
+      {text: 'Volver a Intentar'},
+    ]);
+
+    
         
     const handleSubmit = async e => {
-        // console.log(persona)
-        // setSession(true)
-
+            
         if([codigo, documento, password].includes('')){
             console.log('Todos los campo son obligatorios')
             return
         }
 
         try {
+            setLoader(true)
             const {data} = await clienteAxios.post('/login', {cod:codigo, doc:documento, pas:password, not:'3f8dba94-c830-4131-968b-09d1b6cade06'})
-            setSession(true)
-            const jsonValue = JSON.stringify(data);
-            await AsyncStorage.setItem('token', jsonValue)
-            setAuth(data)
-            console.log(data)
-            router.replace('/screens/home')
+            
+            if(data.success){
+                const jsonValue = JSON.stringify(data);
+                await AsyncStorage.setItem('token', jsonValue)
+                setSession(true)
+                setAuth({...data, codigo, documento})
+                setCodigo('')
+                setDocumento('')
+                setPassword('')
+                router.replace('/screens/home')
+            }else{
+                alerta()
+            }
+            
         } catch (error) {
             console.log(error)
+            alerta()
+        } finally {
+            setLoader(false)
         }
-
 
         if(session){
            return router.replace('/screens/home')
         }
+    }
+
+    if(cargando) {
+        return <Loader />
     }
 
   return (
@@ -119,11 +140,17 @@ export default function Auth() {
                         </View>
                     </View>
                     <View style={styles.button}>
-                        <Button 
-                            title="Ingresar"
-                            onPress={() => {handleSubmit()}}
-                            color={'#EC1C21'}
-                            />
+                        {loader ? (
+                            <View style={styles.buttonDesing}>
+                                <ActivityIndicator size={25} color={'#FFF'}/>
+                            </View>
+                        ):(<TouchableHighlight onPress={handleSubmit} style={{borderRadius:5}}>
+                            <View style={styles.buttonDesing}>
+                                <Ionicons name="enter-outline" size={25} color="#FFF" />
+                                <Text style={styles.buttonText}> Ingresar </Text>
+                            </View>
+                        </TouchableHighlight> )}
+
                     </View>
                 </View>
             </View>

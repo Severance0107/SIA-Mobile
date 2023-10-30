@@ -2,7 +2,9 @@ import React from 'react'
 import { Text, View, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../styles/general.styles'
-import footerImage from '../../public/img/logoufps2.png'
+import footerImage from '../../assets/img/logoufps2.png'
+
+//TODO: eliminar el footer si no se usa
 
 export default function Footer() {
   return (

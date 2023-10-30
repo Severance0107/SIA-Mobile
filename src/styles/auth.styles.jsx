@@ -114,6 +114,23 @@ export const styles = StyleSheet.create({
     button:{
         marginVertical: 15
     },
+    buttonDesing:{
+        flexDirection: 'row', 
+        justifyContent:'center', 
+        alignItems: 'center', 
+        backgroundColor: '#EC1C21',
+        borderRadius: 5,
+        paddingVertical: 5,
+        paddingHorizontal: 8, 
+        width:125
+    },
+    buttonText:{
+        color:'#FFF', 
+        marginLeft:5, 
+        fontWeight:'700', 
+        fontSize:15,
+        textTransform: 'uppercase'
+    },
     containerFooter:{
         flexDirection: 'row',
         justifyContent:'space-around',

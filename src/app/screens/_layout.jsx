@@ -1,20 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
-import { Text, View } from 'react-native'
-import { Redirect, Stack } from 'expo-router'
-import Footer from '../../components/footer'
+import { Text, TouchableHighlight } from 'react-native'
+import { Redirect, useNavigation } from 'expo-router'
 import { Ionicons  } from '@expo/vector-icons'; 
-
+import drawer, { Drawer } from 'expo-router/drawer'
+import DrawerCustom from '../../components/navigate/drawerCustom'
+import { styles } from '../../styles/general.styles'
 
 
 export default function ScreensLayout() {
-
-  const { session, cargando } = useAuth()
+  
+  const { session, cargando, auth } = useAuth()
+  const [modulos, setModulos] = useState([])
 
   useEffect(()=> {
-    // router.push('/screens/home')
-  },[])
-  
+    if(auth.role[0] === 'ALUMNO'){  
+      setModulos([
+        {name:'home', headerShown: true, drawerLabel:'Inicio', icon:'home-outline'},
+        {name:'(bienestar)', headerShown: false, drawerLabel:'Bienestar Univeritario', icon:'fitness-outline'},
+        {name:'(academica)', headerShown: false, drawerLabel:'Información Académica', icon:'library-outline'},
+        {name:'(horario)', headerShown: false, drawerLabel:'Horario', icon:'calendar-outline'},
+        {name:'(matricula)', headerShown: false, drawerLabel:'Matricula ', icon:'receipt-outline'},
+      ])
+    }
+    if(auth.role[0] === 'PROFESOR'){  
+      setModulos([
+        {name:'home', headerShown: true, drawerLabel:'Inicio'},
+      ])
+    }
+  }, [])
+
   if (cargando) {
     return <Text>Cargando...</Text>
   }
@@ -25,34 +40,55 @@ export default function ScreensLayout() {
 
   return (
     <>
-      <Stack 
+      <Drawer
+        drawerContent={(props) => <DrawerCustom {...props}/>}
         screenOptions={{
           headerStyle:{
             backgroundColor:'#EC1C21',
           },
           headerTintColor: '#FFF',
           headerTitleStyle:{
-            fontWeight: '700',
+            fontWeight: '500',
             fontSize: 25,
           },
           headerTitleAlign: 'center',
-          headerRight: () => (<Notificaciones />)
+          headerRight: () => (<Menu/>),
+          headerLeft: () => (<Notificaciones/>),
+          drawerStyle: styles.drawerStyles,
+          drawerPosition: 'right',
+          drawerActiveTintColor: '#EC1C21',
+          drawerInactiveTintColor: '#383838',
         }}
       >
-        <Stack.Screen name={"(academica)"} options={{headerShown: false}}/>
-        <Stack.Screen name={"(bienestar)"} options={{headerShown: false}}/>
-        <Stack.Screen name={"(horario)"} options={{headerShown: false}}/>
-        <Stack.Screen name={"(matricula)"} options={{headerShown: false}}/>
-      </Stack>
-      <Footer/>
+        {
+          modulos.map((modulo, index) => (
+            <Drawer.Screen key={index} name={modulo.name} options={{headerShown: modulo.headerShown, drawerLabel: modulo.drawerLabel, icon: modulo.icon}} />
+          ))
+        }
+      </Drawer>
     </>
   )
 }
 
 const Notificaciones = () => {
   return (
-    <View>
-      <Ionicons name="notifications" size={24} color="#FFF" />
-    </View>
+    <TouchableHighlight
+      style={{marginLeft: 8}}
+      
+    >
+      <Ionicons name="ios-notifications-outline" size={25} color="#FFF" />
+    </TouchableHighlight>
+  )
+}
+
+const Menu = () => {
+  const navigation = useNavigation();
+  return (
+    <TouchableHighlight
+    style={{marginRight: 8}}
+    onPress={() => {navigation.openDrawer()}}
+    >
+      <Ionicons name="menu" size={25} color="#FFF" />
+    </TouchableHighlight>
   )
 }
