@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth'
 import { Text, TouchableHighlight } from 'react-native'
 import { Redirect, useNavigation } from 'expo-router'
 import { Ionicons  } from '@expo/vector-icons'; 
-import drawer, { Drawer } from 'expo-router/drawer'
+import { Drawer } from 'expo-router/drawer'
 import DrawerCustom from '../../components/navigate/drawerCustom'
 import { styles } from '../../styles/general.styles'
 

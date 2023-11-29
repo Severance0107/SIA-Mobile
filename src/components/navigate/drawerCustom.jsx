@@ -1,6 +1,6 @@
 import { DrawerContentScrollView } from '@react-navigation/drawer'
 import React, { useEffect, } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import useAuth from '../../hooks/useAuth'
 import { Ionicons  } from '@expo/vector-icons'; 
 import { styles } from '../../styles/general.styles'

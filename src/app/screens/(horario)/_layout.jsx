@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react'
 import { Tabs} from 'expo-router'
 import TabsCustom from '../../../components/tabsCustom';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { styles } from '../../../styles/general.styles';
 import * as Animatable from 'react-native-animatable';
 import { TouchableOpacity, View } from 'react-native';
 
 const tabsLayout = [
-  {name: 'estudiante', title:'Horario Actual', label:'Actual', href:'/screens/estudiante', icon:'person-outline'},
-  {name: 'carrera', title:'Horario Carrera', label:'Carrera', href:'/screens/carrera', icon:'newspaper-outline'},
+  {name: 'estudiante', title:'Horario Actual', label:'Actual', href:'/screens/estudiante', icon:'calendar-check'},
+  {name: 'carrera', title:'Horario Carrera', label:'Carrera', href:'/screens/carrera', icon:'newspaper'},
 ];
 
 export default function HorarioLayout({}) {
@@ -80,7 +80,7 @@ export const TabButton = (props) => {
             ref={circleRef}
             style={styles.tabBorderButton}
           />
-          <Ionicons name={stateTab.icon} color={focused ? '#FFF' : '#EC1C21'} size={20}/>
+          <FontAwesome5 name={stateTab.icon} color={focused ? '#FFF' : '#EC1C21'} size={20}/>
         </View>
         <Animatable.Text ref={LabelRef} style={styles.tabLabel}>
           {

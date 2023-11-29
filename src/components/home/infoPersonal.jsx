@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth'
 export default function InfoPersonal() {
 
   const [informacion, setInformacion] = useState({})
-  const {auth} = useAuth()
+  const {auth, setDatos} = useAuth()
   const {codigo, documento} = auth
 
   useEffect(() => {
@@ -16,8 +16,12 @@ export default function InfoPersonal() {
   },[])
   
   const fetchData = async () =>{
-    const {data} = await clienteAxios.get('/api/alumno/datos_home', {codigo, documento})
+    const {data} = await clienteAxios.get('/api/alumno/datos_home')
     setInformacion(data.datos)
+    setDatos({
+      codigo: data.datos.CODIGO,
+      documento: data.datos.DOCUMENTO
+    })
   }
 
 

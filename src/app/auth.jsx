@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import clienteAxios from '../config/clienteAxios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
@@ -27,8 +27,6 @@ export default function Auth() {
     Alert.alert('Error de Autenticación', 'Revisa tus credenciales y vuelve a intentarlo', [
       {text: 'Volver a Intentar'},
     ]);
-
-    
         
     const handleSubmit = async e => {
             
@@ -45,7 +43,7 @@ export default function Auth() {
                 const jsonValue = JSON.stringify(data);
                 await AsyncStorage.setItem('token', jsonValue)
                 setSession(true)
-                setAuth({...data, codigo, documento})
+                setAuth({...data})
                 setCodigo('')
                 setDocumento('')
                 setPassword('')

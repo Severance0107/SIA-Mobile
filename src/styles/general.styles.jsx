@@ -199,3 +199,79 @@ export const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
+// ------------------------ Accordion -----------------------------------
+export const stylesAcordion = StyleSheet.create({
+  container: {
+    backgroundColor: "#FFF",
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  tittleContainer: {
+    padding: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: "500",
+    color: "#383838",
+    textTransform: "capitalize",
+  },
+  subTittle:{
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#383838",
+  },
+  chevronImage: {
+    width: 16,
+    height: 16,
+  },
+  contentContainer: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+  },
+  content: {
+    padding: 12,
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 8,
+  },
+  subContent:{
+    marginHorizontal: 10,
+    marginBottom: 10
+  },
+  contentTop: {
+    width: "100%",
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  textContentTop: {
+    fontSize: 12,
+    textAlign: "center",
+    color: "#EC1C21",
+    textAlign: "center",
+  },
+  contentBottom: {
+    flex: 1,
+    gap: 5,
+    alignItems: "flex-end",
+  },
+  textContentBottom: {
+    fontSize: 12,
+    color: "#383838",
+    textAlign: "center",
+    fontWeight: "400",
+  },
+});
